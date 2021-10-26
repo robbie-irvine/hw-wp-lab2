@@ -19,12 +19,14 @@
     background-color: rgb(128, 128, 128);
     align-content: center;
     align-self: center;
+    width: 1200px;
 }
 
 #scores {
     background-color: rgb(247, 134, 241);
     align-content: center;
     align-self: center;
+    width: 1200px;
 }
 
 .location {
