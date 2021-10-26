@@ -6,9 +6,9 @@ function Bear() {
     this.y = this.htmlElement.offsetTop;
 
     this.move = function(xDir, yDir) {
-        this.fitBounds(); // keeps bear within board
         this.x += this.dBear * xDir;
         this.y += this.dBear * yDir;
+        this.fitBounds(); // keeps bear within board
         this.display();
     };
 
