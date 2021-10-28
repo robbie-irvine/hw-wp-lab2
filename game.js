@@ -34,8 +34,8 @@ function Bear() {
     };
 
     this.setSpeed = function() {
-        let spdBear = document.getElementById("speedBear").value;
-        this.dBear = Number(spdBear);
+        let dBear = document.getElementById("speedBear").value;
+        this.dBear = Number(dBear);
     };
 }
 
@@ -93,6 +93,7 @@ function start() {
     bees = new Array();
     // create bees
     makeBees();
+    updateBees();
 }
 
 // Handle keyboard events to move the bear
@@ -174,6 +175,27 @@ function createBeeImg(wNum) {
 
     // return the img object
     return img;
+}
+
+function moveBees() {
+    // get speed input value
+    let speed = document.getElementById("speedBees").value;
+    // move each bee to a random location
+    for (let i = 0; i < bees.length; i++) {
+        let dx = getRandomInt(2 * speed) - speed;
+        let dy = getRandomInt(2 * speed) - speed;
+        bees[i].move(dx, dy);
+    }
+}
+
+function updateBees() { // update loop for game
+    // move bees randomly
+    moveBees();
+    // use a fixed update period
+    let period = document.getElementById("periodTimer").value; // controls refresh period
+    period = Number(period);
+    // update the timer for the next move
+    updateTimer = setTimeout("updateBees()", period);
 }
 
 function getRandomInt(max) {
