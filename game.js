@@ -34,7 +34,8 @@ function Bear() {
     };
 
     this.setSpeed = function() {
-        this.dBear = document.getElementById("speedBear").value;
+        let spdBear = document.getElementById("speedBear").value;
+        this.dBear = Number(spdBear);
     };
 }
 
@@ -82,9 +83,16 @@ class Bee {
 }
 
 function start() {
-    //create bear
+    // Create bear
     bear = new Bear();
+    // Get bear speed specified by the user
+    bear.setSpeed();
+    // Add an event listener to the keypress event
     document.addEventListener("keydown", moveBear, false);
+    // Create new array for bees
+    bees = new Array();
+    // create bees
+    makeBees();
 }
 
 // Handle keyboard events to move the bear
@@ -113,6 +121,27 @@ function moveBear(e) {
     // down key
     if (e.keyCode == KEYDOWN) {
         bear.move(0, 1);
+    }
+}
+
+function makeBees() {
+    // get num of bees specified by user
+    let nbBees = document.getElementById("nbBees").value;
+    nbBees = Number(nbBees); // try converting the content of the input to a number
+
+    if (isNaN(nbBees)) {
+        window.alert("Invalid number of bees");
+        return;
+    }
+
+    // create bees
+    let i = 1;
+    while (i <= nbBees) {
+        var num = i;
+        var bee = new Bee(num);
+        bee.display(); // display the bee
+        bees.push(bee); // add the bee object to the bees array
+        i++;
     }
 }
 
