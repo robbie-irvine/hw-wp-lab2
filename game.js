@@ -199,8 +199,13 @@ function updateBees() { // update loop for game
     // use a fixed update period
     let period = document.getElementById("periodTimer").value; // controls refresh period
     period = Number(period);
-    // update the timer for the next move
-    updateTimer = setTimeout("updateBees()", period);
+    if (hits.innerHTML < 1000) {
+        // update the timer for the next move
+        updateTimer = setTimeout("updateBees()", period);
+    } else {
+        clearTimeout(updateTimer);
+        showGameOver();
+    }
 }
 
 function isHit(defender, offender) {
@@ -235,4 +240,12 @@ function overlap(element1, element2) {
         return false;
     }
     return true;
+}
+
+function showGameOver() {
+    let gameOverText = document.createElement("h1");
+    gameOverText.textContent = "Game Over!";
+    gameOverText.setAttribute("id", "gameOverText");
+    let boardDiv = document.getElementById("board");
+    boardDiv.appendChild(gameOverText);
 }

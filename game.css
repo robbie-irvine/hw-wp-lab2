@@ -41,3 +41,7 @@
 #duration {
     color: blue;
 }
+
+#gameOverText {
+    margin-left: 20px;
+}
