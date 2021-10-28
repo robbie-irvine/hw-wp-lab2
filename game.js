@@ -115,3 +115,38 @@ function moveBear(e) {
         bear.move(0, 1);
     }
 }
+
+function createBeeImg(wNum) {
+    // get dimension and position of board div
+    let boardDiv = document.getElementById("board");
+    let boardDivW = boardDiv.offsetWidth;
+    let boardDivH = boardDiv.offsetHeight;
+    let boardDivX = boardDiv.offsetLeft;
+    let boardDivY = boardDiv.offsetTop;
+
+    // create the IMG element
+    let img = document.createElement("img");
+    img.setAttribute("src", "images/bee.gif");
+    img.setAttribute("width", "100");
+    img.setAttribute("alt", "A bee");
+    img.setAttribute("id", "bee" + wNum);
+    img.setAttribute("class", "bee"); // set class of html tag img
+
+    // add the IMG element to the DOM as a child of the board div
+    img.style.position = "absolute";
+    boardDiv.appendChild(img);
+
+    // set initial position
+    let x = getRandomInt(boardDivW);
+    let y = getRandomInt(boardDivH);
+
+    img.style.left = (boardDivX + x) + "px"
+    img.style.top = (y) + "px"
+
+    // return the img object
+    return img;
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * (max + 1));
+}
