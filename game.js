@@ -93,11 +93,19 @@ function start() {
     bear.setSpeed();
     // Add an event listener to the keypress event
     document.addEventListener("keydown", moveBear, false);
+    // Initialise lastStingTime when bear moves
+    document.addEventListener("keydown", stingInit, false);
     // Create new array for bees
     bees = new Array();
     // create bees
     makeBees();
+    // start bee update script
     updateBees();
+}
+
+function stingInit(e) {
+    lastStingTime = new Date();
+    document.removeEventListener("keydown", stingInit);
 }
 
 // Handle keyboard events to move the bear
@@ -213,6 +221,21 @@ function isHit(defender, offender) {
         let score = hits.innerHTML;
         score = Number(score) + 1; // increment the score
         hits.innerHTML = score; // display the new score
+        
+        // calculate longest duration
+        let newStingTime = new Date();
+        let thisDuration = newStingTime - lastStingTime;
+        lastStingTime = newStingTime;
+        let longestDuration = Number(duration.innerHTML);
+
+        if (longestDuration == 0) {
+            longestDuration = thisDuration;
+        } else {
+            if (longestDuration < thisDuration) longestDuration = thisDuration;
+        }
+
+        document.getElementById("duration").innerHTML = longestDuration;
+        
     }
 }
 
