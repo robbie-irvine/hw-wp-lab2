@@ -164,6 +164,12 @@ function makeBees() {
     }
 }
 
+function addBee() {
+    var bee = new Bee(bees.length + 1);
+    bee.display();
+    bees.push(bee);
+}
+
 function clearBees() { // deletes all bees on board
     if (bees != null) {
         for (let i = 1; i <= bees.length; i++) {
@@ -239,8 +245,7 @@ function isHit(defender, offender) {
         
         // calculate longest duration
         let newStingTime = new Date();
-        let thisDuration = 0;
-        if (isNaN(lastStingTime)) thisDuration = newStingTime - lastStingTime;
+        let thisDuration = newStingTime - lastStingTime;
         lastStingTime = newStingTime;
         let longestDuration = Number(duration.innerHTML);
 
