@@ -88,10 +88,11 @@ function getRandomInt(max) {
 
 function start() {
     clearTimeout(updateTimer);
+    if (document.getElementById("gameOverText") != null) document.getElementById("gameOverText").remove();
     //
-    document.getElementById("hits").value = 0;
+    document.getElementById("hits").innerHTML = 0;
     //
-    document.getElementById("duration").value = 0;
+    document.getElementById("duration").innerHTML = 0;
     // Create bear
     bear = new Bear();
     // Get bear speed specified by the user
@@ -238,7 +239,8 @@ function isHit(defender, offender) {
         
         // calculate longest duration
         let newStingTime = new Date();
-        let thisDuration = newStingTime - lastStingTime;
+        let thisDuration = 0;
+        if (isNaN(lastStingTime)) thisDuration = newStingTime - lastStingTime;
         lastStingTime = newStingTime;
         let longestDuration = Number(duration.innerHTML);
 
