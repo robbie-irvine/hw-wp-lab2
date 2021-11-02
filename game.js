@@ -87,6 +87,11 @@ function getRandomInt(max) {
 }
 
 function start() {
+    clearTimeout(updateTimer);
+    //
+    document.getElementById("hits").value = 0;
+    //
+    document.getElementById("duration").value = 0;
     // Create bear
     bear = new Bear();
     // Get bear speed specified by the user
@@ -95,6 +100,8 @@ function start() {
     document.addEventListener("keydown", moveBear, false);
     // Initialise lastStingTime when bear moves
     document.addEventListener("keydown", stingInit, false);
+    // remove all bees visible
+    clearBees();
     // Create new array for bees
     bees = new Array();
     // create bees
@@ -148,14 +155,21 @@ function makeBees() {
     }
 
     // create bees
-    let i = 1;
-    while (i <= nbBees) {
+    for (let i = 1; i <= nbBees; i++) {
         var num = i;
         var bee = new Bee(num);
         bee.display(); // display the bee
         bees.push(bee); // add the bee object to the bees array
-        i++;
     }
+}
+
+function clearBees() { // deletes all bees on board
+    if (bees != null) {
+        for (let i = 1; i <= bees.length; i++) {
+            document.getElementById("bee" + i).remove();
+        }
+    }
+    
 }
 
 function createBeeImg(wNum) {
