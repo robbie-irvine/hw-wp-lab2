@@ -87,11 +87,13 @@ function getRandomInt(max) {
 }
 
 function start() {
+    // Stops bee update timer before initialising
     clearTimeout(updateTimer);
+    // Removes game over text if visible
     if (document.getElementById("gameOverText") != null) document.getElementById("gameOverText").remove();
-    //
+    // Sets bee stings to 0
     document.getElementById("hits").innerHTML = 0;
-    //
+    // Sets longest duration to 0
     document.getElementById("duration").innerHTML = 0;
     // Create bear
     bear = new Bear();
