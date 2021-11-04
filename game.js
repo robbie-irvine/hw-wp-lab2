@@ -99,6 +99,8 @@ function start() {
     bear.setSpeed();
     // Add an event listener to the keypress event
     document.addEventListener("keydown", moveBear, false);
+    // Initialise lastStingTime in case bear doesn't move before stung
+    lastStingTime = new Date();
     // Initialise lastStingTime when bear moves
     document.addEventListener("keydown", stingInit, false);
     // remove all bees visible
